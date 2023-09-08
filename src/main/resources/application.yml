@@ -1,0 +1,24 @@
+server:
+  port: 8080
+
+spring:
+  liquibase:
+    enabled: true
+    change-log: classpath:/liquibase/master.xml
+    contexts: base
+  datasource:
+    driverClassName: org.postgresql.Driver
+    url: jdbc:postgresql://localhost:5432/${POSTGRES_DB:postgres}${PG_ADDITIONAL_PARAMS:}
+    username: ${PG_USERNAME:postgres}
+    password: ${PG_PASSWORD:postgres}
+    jpa:
+      show-sql: true
+
+springdoc:
+  packages-to-scan: ru.perfconf.k6example.controllers
+  paths-to-match: /**
+  api-docs:
+    enabled: ${SWAGGER_ENABLED:true}
+  swagger-ui:
+    enabled: ${SWAGGER_ENABLED:true}
+    display-request-duration: true

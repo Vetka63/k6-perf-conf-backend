@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+                   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                   xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                   http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.6.xsd">
+
+    <changeSet id="init-db-schema" author="Penyaev Sergey">
+        <sql>
+            create schema if not exists k6_example;
+        </sql>
+    </changeSet>
+
+    <changeSet id="init-table-users" author="Penyaev Sergey">
+        <sql>
+            create table k6_example.users
+            (
+                uuid            uuid primary key,
+                name            varchar(256),
+                age             integer
+            );
+
+            COMMENT ON TABLE k6_example.users            IS 'Пользователи';
+
+            COMMENT ON COLUMN k6_example.users.uuid         IS 'Уникальный идентификатор записи';
+            COMMENT ON COLUMN k6_example.users.name         IS 'Имя пользователя';
+            COMMENT ON COLUMN k6_example.users.age          IS 'Возраст пользователя';
+        </sql>
+    </changeSet>
+
+</databaseChangeLog>
